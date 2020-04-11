@@ -1,73 +1,72 @@
 package tests;
 
-import helpers.BaseTest;
-import helpers.Variables;
-import org.junit.After;
+import helpers.BaseSteps;
+import yandex.YandexPage;
 import org.junit.Assert;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
 
-public class FinalTasksTest extends Variables {
+public class FinalTasksTest extends BaseSteps {
     private static final String baseUrl = "https://yandex.ru";
     private String FirstRez;
+    private YandexPage variables = new YandexPage();
 
-    @Test
+    //@Test
     public void TaskOne() {
-        BaseTest.driver.get(baseUrl);
-        waitClick(market);
-        ArrayList<String> Tabs = new ArrayList<>(BaseTest.driver.getWindowHandles());
-        BaseTest.driver.switchTo().window(Tabs.get(1));
-        waitClick(electronics);
-        waitClick(tv);
-        waitClick(allFilters);
+        BaseSteps.driver.get(baseUrl);
+        waitClick(variables.getMarket());
+        ArrayList<String> Tabs = new ArrayList<>(BaseSteps.driver.getWindowHandles());
+        BaseSteps.driver.switchTo().window(Tabs.get(1));
+        waitClick(variables.getElectronics());
+        waitClick(variables.getTv());
+        waitClick(variables.getAllFilters());
         waitText(By.xpath("//div[4]/div/h1"), "Все фильтры");
-        fill(minPrice, "20000");
-        tvFilter1.click();
-        tvFilter2.click();
-        waitClick(lookRez);
-        waitText(Header, "Телевизоры");
-        waitClickNoClick(BaseTest.driver.findElement(By.xpath("//div[3]/div[1]/div[2]/div/div[1]/div[1]/div[4]/div[1]/h3/a")));
-        ArrayList<WebElement> listRez = (ArrayList<WebElement>) BaseTest.driver.findElements(By.xpath("//div[3]/div[1]/div[2]/div/div[1]/*/div[4]/div[1]/h3/a"));
+        fill(variables.getMinPrice(), "20000");
+        variables.getTvFilter1().click();
+        variables.getTvFilter2().click();
+        waitClick(variables.getLookRez());
+        waitText(variables.getHeader(), "Телевизоры");
+        waitClickNoClick(BaseSteps.driver.findElement(By.xpath("//div[3]/div[1]/div[2]/div/div[1]/div[1]/div[4]/div[1]/h3/a")));
+        ArrayList<WebElement> listRez = (ArrayList<WebElement>) BaseSteps.driver.findElements(By.xpath("//div[3]/div[1]/div[2]/div/div[1]/*/div[4]/div[1]/h3/a"));
         Assert.assertEquals(48, listRez.size());
         FirstRez = listRez.get(0).getText();
-        fill(search, FirstRez);
-        BaseTest.driver.findElement(By.xpath("//div[2]/div/div[1]/form/span/span[2]/button")).click();
-        Assert.assertEquals(FirstRez, BaseTest.driver.findElement(By.xpath("//div[3]/div[1]/div[2]/div/div[1]/div[1]/div[4]/div[1]/h3/a")).getText());
+        fill(variables.getSearch(), FirstRez);
+        BaseSteps.driver.findElement(By.xpath("//div[2]/div/div[1]/form/span/span[2]/button")).click();
+        Assert.assertEquals(FirstRez, BaseSteps.driver.findElement(By.xpath("//div[3]/div[1]/div[2]/div/div[1]/div[1]/div[4]/div[1]/h3/a")).getText());
     }
 
 
-    @Test
+   // @Test
     public void TaskTwo() {
-        BaseTest.driver.get(baseUrl);
-        waitClick(market);
-        ArrayList<String> Tabs = new ArrayList<>(BaseTest.driver.getWindowHandles());
-        BaseTest.driver.switchTo().window(Tabs.get(1));
-        waitClick(electronics);
-        waitClick(headset);
-        waitClick(allFilters);
+        BaseSteps.driver.get(baseUrl);
+        waitClick(variables.getMarket());
+        ArrayList<String> Tabs = new ArrayList<>(BaseSteps.driver.getWindowHandles());
+        BaseSteps.driver.switchTo().window(Tabs.get(1));
+        waitClick(variables.getElectronics());
+        waitClick(variables.getHeadset());
+        waitClick(variables.getAllFilters());
         waitText(By.xpath("//div[4]/div/h1"), "Все фильтры");
-        fill(minPrice, "5000");
-        headsetFilter.click();
-        waitClick(lookRez);
-        waitText(Header, "Наушники и Bluetooth-гарнитуры");
-        waitClickNoClick(BaseTest.driver.findElement(By.xpath("//div[1]/div[2]/div/div[1]/div[1]/div[4]/div[1]/h3/a")));
-        ArrayList<WebElement> listRez = (ArrayList<WebElement>) BaseTest.driver.findElements(By.className("n-snippet-card2__title"));
+        fill(variables.getMinPrice(), "5000");
+        variables.getHeadsetFilter().click();
+        waitClick(variables.getLookRez());
+        waitText(variables.getHeader(), "Наушники и Bluetooth-гарнитуры");
+        waitClickNoClick(BaseSteps.driver.findElement(By.xpath("//div[1]/div[2]/div/div[1]/div[1]/div[4]/div[1]/h3/a")));
+        ArrayList<WebElement> listRez = (ArrayList<WebElement>) BaseSteps.driver.findElements(By.className("n-snippet-card2__title"));
         Assert.assertEquals(23, listRez.size());
         FirstRez = listRez.get(0).getText();
-        fill(search, FirstRez);
-        waitClick(searchBut);
-        Assert.assertEquals(FirstRez, BaseTest.driver.findElement(By.xpath("/html/body/div[2]/div[5]/div[3]/div[1]/div[2]/div/div[1]/*/div[4]/div[1]/h3/a")).getText());
+        fill(variables.getSearch(), FirstRez);
+        waitClick(variables.getSearchBut());
+        Assert.assertEquals(FirstRez, BaseSteps.driver.findElement(By.xpath("/html/body/div[2]/div[5]/div[3]/div[1]/div[2]/div/div[1]/*/div[4]/div[1]/h3/a")).getText());
     }
 
-    @After
+   // @After
     public void af() {
-        ArrayList<String> Tabs = new ArrayList<>(BaseTest.driver.getWindowHandles());
+        ArrayList<String> Tabs = new ArrayList<>(BaseSteps.driver.getWindowHandles());
         if (Tabs.size() > 1) {
-            BaseTest.driver.close();
-            BaseTest.driver.switchTo().window(Tabs.get(0));
+            BaseSteps.driver.close();
+            BaseSteps.driver.switchTo().window(Tabs.get(0));
         }
     }
 
