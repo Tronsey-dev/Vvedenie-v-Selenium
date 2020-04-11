@@ -2,45 +2,50 @@ package tests;
 
 import helpers.BaseSteps;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import ru.yandex.qatools.allure.annotations.Title;
 import sberbank.SberbankSteps;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class TaskTest extends BaseSteps {
-	private static final String baseUrl = "https://www.sberbank.ru/ru/person";
+    private static final String baseUrl = "https://www.sberbank.ru/ru/person";
 
-	@Test
-	@Title("Страхование от Сбербанка")
-	public void TaskOne() {
-		SberbankSteps sberbankSteps = new SberbankSteps();
-	//	sberbankSteps.getMainPage("https://www.sberbank.ru/ru/person");
+    @Test
+    @Title("Страхование от Сбербанка")
+    public void TaskOne() {
+        SberbankSteps sberbankSteps = new SberbankSteps();
+        sberbankSteps.goToUrl(baseUrl);
+        sberbankSteps.clickOnInsurance();
 
-		sberbankSteps.clickOnInsurance();
-	/*	sberbankSteps.waitAndClickOn(sberbankPage.getListButtonInsurance(), sberbankPage.getListButtonInsurance().getText());
-		sberbankSteps.waitAndClickOn(sberbankPage.getButtonApplyOnline(), sberbankPage.getButtonApplyOnline().getText());
-		sberbankSteps.waitAndClickOn(sberbankPage.getButtonMinSum(), sberbankPage.getButtonMinSum().getText());
-		sberbankSteps.waitAndClickOn(sberbankPage.getButtonRegister(), sberbankPage.getButtonRegister().getText());
+        sberbankSteps.clickOnListButton();
+        sberbankSteps.clickOnOnline();
+        sberbankSteps.clickOnButtonMinSum();
+        sberbankSteps.clickOnButtonRegister();
 
-		sberbankSteps.waitTextLoad(By.xpath("//form/div/fieldset[2]/legend"), "Страхователь");
+        sberbankSteps.waitTextLoad("//form/div/fieldset[2]/legend", "Страхователь");
+        Map<String, String> textForForm = new HashMap<>();
+        textForForm.put("surname_vzr_ins_0", "Фамилия");
+        textForForm.put("name_vzr_ins_0", "Имя");
+        textForForm.put("birthDate_vzr_ins_0", "20021980");
+        sberbankSteps.fillFields(textForForm);
 
-		sberbankSteps.fillTextField(By.id("surname_vzr_ins_0"), "Фамилия");
-		sberbankSteps.fillTextField(By.id("name_vzr_ins_0"), "Имя");
-		sberbankSteps.fillTextField(By.id("birthDate_vzr_ins_0"), "20021980");
+        sberbankSteps.clickOnMale();
 
-		sberbankSteps.clickOn(sberbankPage.getButtonMale(), sberbankPage.getButtonMale().getText());
+        textForForm.clear();
+        textForForm.put("person_lastName", "Фамилия2");
+        textForForm.put("person_firstName", "Имя2");
+        textForForm.put("person_middleName", "Отчество");
+        textForForm.put("person_birthDate", "20021980");
+        textForForm.put("passportSeries", "1234");
+        textForForm.put("passportNumber", "567890");
+        textForForm.put("documentDate", "20021982");
+        textForForm.put("documentIssue", "ОДВ вселенной по рукаву Ориона");
+        sberbankSteps.fillFields(textForForm);
 
-		sberbankSteps.fillTextField(By.id("person_lastName"), "Фамилия2");
-		sberbankSteps.fillTextField(By.id("person_firstName"), "Имя2");
-		sberbankSteps.fillTextField(By.id("person_middleName"), "Отчество");
-		sberbankSteps.fillTextField(By.id("person_birthDate"), "20021980");
-		sberbankSteps.fillTextField(By.id("passportSeries"), "1234");
-		sberbankSteps.fillTextField(By.id("passportNumber"), "567890");
-		sberbankSteps.fillTextField(By.id("documentDate"), "20021982");
-		sberbankSteps.fillTextField(By.id("documentIssue"), "ОДВ вселенной по рукаву Ориона");
+        sberbankSteps.clickOnFinalBtn();
+        sberbankSteps.waitTextLoad("//alert-form[1]/div", "При заполнении данных произошла ошибка");
 
-		sberbankSteps.clickOn(sberbankPage.getFinalButton(), sberbankPage.getFinalButton().getText());
-
-		sberbankSteps.waitTextLoad(By.xpath("//alert-form[1]/div"), "При заполнении данных произошла ошибка");*/
-	}
+    }
 
 }

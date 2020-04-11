@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.concurrent.TimeUnit;
+
 public class YandexPage {
 
 	@FindBy(xpath = "//*[normalize-space(text()) = 'Маркет']")
@@ -50,55 +52,10 @@ public class YandexPage {
 		PageFactory.initElements(BaseSteps.getDriver(), this);
 	}
 
-	public WebElement getMarket() {
-		return market;
-	}
+	public void goToUrl(String url) {
+		BaseSteps.getDriver().get(url);
+		BaseSteps.getDriver().manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+		BaseSteps.getDriver().manage().window().maximize();
 
-	public WebElement getElectronics() {
-		return electronics;
-	}
-
-	public WebElement getTv() {
-		return tv;
-	}
-
-	public WebElement getHeadset() {
-		return headset;
-	}
-
-	public WebElement getAllFilters() {
-		return allFilters;
-	}
-
-	public WebElement getMinPrice() {
-		return minPrice;
-	}
-
-	public WebElement getTvFilter1() {
-		return tvFilter1;
-	}
-
-	public WebElement getTvFilter2() {
-		return tvFilter2;
-	}
-
-	public WebElement getHeadsetFilter() {
-		return headsetFilter;
-	}
-
-	public WebElement getLookRez() {
-		return lookRez;
-	}
-
-	public WebElement getSearch() {
-		return search;
-	}
-
-	public WebElement getSearchBut() {
-		return searchBut;
-	}
-
-	public WebElement getHeader() {
-		return header;
 	}
 }

@@ -1,17 +1,15 @@
 package yandex;
 
+import ru.yandex.qatools.allure.annotations.Step;
+
 public class YandexSteps {
 
-	/*@Step("выполнено нажатие на Отправить заявку")
-	public void goToSendAppPage() {
-		new DMSPage().sendAppBtn.click();
-	}
+    private YandexPage yandexPage = new YandexPage();
+
+    @Step("Переход на страницу Яндекса: {0}")
+    public void goToUrl(String url) {
+        yandexPage.goToUrl(url);
+    }
 
 
-	@Step("заголовок страницы - ДМС равен {0}")
-	public void checkPageTitle(String expectedTitle) {
-		String actualTitle = new DMSPage().title.getText();
-		assertTrue(String.format("Заголовок равен [%s]. Ожидалось - [%s]",
-				actualTitle, expectedTitle), actualTitle.contains(expectedTitle));
-	}*/
 }
