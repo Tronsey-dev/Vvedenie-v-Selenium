@@ -1,8 +1,8 @@
-package helpers;
+package ru.autotests.utils;
 
-import org.junit.AfterClass;
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import org.junit.Assert;
-import org.junit.BeforeClass;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -19,7 +19,7 @@ public class BaseSteps {
     public static WebDriver driver;
     public static Wait<WebDriver> wait;
 
-    @BeforeClass
+    @Before
     public static void setUp() {
         switch (properties.getProperty("browser")) {
             case "firefox":
@@ -92,7 +92,7 @@ public class BaseSteps {
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 
-    @AfterClass
+    @After
     public static void after() {
         driver.quit();
     }

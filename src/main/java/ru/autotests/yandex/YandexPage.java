@@ -1,11 +1,11 @@
-package yandex;
+package ru.autotests.yandex;
 
-import helpers.BaseSteps;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import ru.autotests.utils.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -110,7 +110,7 @@ public class YandexPage {
         BaseSteps.fill(search, firstRes);
     }
 
-    public void clickObSearchBtn(String firstRes,String xpath) {
+    public void clickObSearchBtn(String firstRes, String xpath) {
         BaseSteps.waitClick(searchBut.findElement(By.xpath("./..")));
         BaseSteps.elementIsPresents(xpath);
         WebElement foundElement = BaseSteps.findElementByXpath(xpath);
@@ -129,5 +129,13 @@ public class YandexPage {
         List<WebElement> listRez = BaseSteps.findElementsByClassName(className);
         Assert.assertEquals(String.format("Получено значение [%1s]. Ожидалось [%2s]", listRez.size(), 24), 24, listRez.size());
         return listRez.get(0).getText();
+    }
+
+    public void closeMarketTab() {
+        ArrayList<String> Tabs = new ArrayList<>(BaseSteps.getDriver().getWindowHandles());
+        if (Tabs.size() > 1) {
+            BaseSteps.getDriver().close();
+            BaseSteps.getDriver().switchTo().window(Tabs.get(0));
+        }
     }
 }

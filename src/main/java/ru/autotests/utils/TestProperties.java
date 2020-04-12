@@ -1,4 +1,4 @@
-package helpers;
+package ru.autotests.utils;
 
 import java.io.File;
 import java.io.FileInputStream;

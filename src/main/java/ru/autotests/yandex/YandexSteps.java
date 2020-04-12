@@ -1,6 +1,6 @@
-package yandex;
+package ru.autotests.yandex;
 
-import helpers.BaseSteps;
+import ru.autotests.utils.*;
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class YandexSteps {
@@ -50,7 +50,7 @@ public class YandexSteps {
         yandexPage.clickTvFilters();
     }
 
-    @Step("Нажатие кнопки Применить и ожидание загркузки страницы {0}")
+    @Step("Нажатие кнопки Применить и ожидание загрузки страницы {0}")
     public void clickResAndWait(String name) {
         yandexPage.clickResAndWait(name);
     }
@@ -83,5 +83,10 @@ public class YandexSteps {
     @Step("Получение списка наушников и сравнение его длины")
     public String getHeadsetList(String className) {
         return yandexPage.getHeadsetList(className);
+    }
+
+    @Step("Закрытие вкладки Маркет")
+    public void closeMarketTab() {
+        yandexPage.closeMarketTab();
     }
 }

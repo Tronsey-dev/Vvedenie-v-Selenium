@@ -1,10 +1,10 @@
-package sberbank;
+package ru.autotests.sberbank;
 
-import helpers.BaseSteps;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import ru.autotests.utils.*;
 
 import java.util.concurrent.TimeUnit;
 

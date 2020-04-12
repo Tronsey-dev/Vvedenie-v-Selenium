@@ -1,9 +1,6 @@
-package sberbank;
+package ru.autotests.sberbank;
 
 
-import helpers.BaseSteps;
-import org.apache.commons.exec.util.MapUtils;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import ru.yandex.qatools.allure.annotations.Step;
 
