@@ -25,23 +25,24 @@ public class TaskTest extends BaseSteps {
 
         sberbankSteps.waitTextLoad("//form/div/fieldset[2]/legend", "Страхователь");
         Map<String, String> textForForm = new HashMap<>();
-        textForForm.put("surname_vzr_ins_0", "Фамилия");
-        textForForm.put("name_vzr_ins_0", "Имя");
+        textForForm.put("surname_vzr_ins_0", "Surname");
+        textForForm.put("name_vzr_ins_0", "Name");
         textForForm.put("birthDate_vzr_ins_0", "20021980");
         sberbankSteps.fillFields(textForForm);
 
         sberbankSteps.clickOnMale();
 
-        textForForm.clear();
-        textForForm.put("person_lastName", "Фамилия2");
-        textForForm.put("person_firstName", "Имя2");
-        textForForm.put("person_middleName", "Отчество");
-        textForForm.put("person_birthDate", "20021980");
-        textForForm.put("passportSeries", "1234");
-        textForForm.put("passportNumber", "567890");
-        textForForm.put("documentDate", "20021982");
-        textForForm.put("documentIssue", "ОДВ вселенной по рукаву Ориона");
-        sberbankSteps.fillFields(textForForm);
+        Map<String, String> textForForm2 = new HashMap<>();
+        textForForm2.put("person_lastName", "ФамилияГражданина");
+        textForForm2.put("person_firstName", "ИмяГражданина");
+        textForForm2.put("person_middleName", "ОтчествоГражданина");
+        textForForm2.put("person_birthDate", "20021982");
+
+        textForForm2.put("passportSeries", "1234");
+        textForForm2.put("passportNumber", "567890");
+        textForForm2.put("documentDate", "20022000");
+        textForForm2.put("documentIssue", "ОДВ вселенной по рукаву Ориона");
+        sberbankSteps.fillFields(textForForm2);
 
         sberbankSteps.clickOnFinalBtn();
         sberbankSteps.waitTextLoad("//alert-form[1]/div", "При заполнении данных произошла ошибка");

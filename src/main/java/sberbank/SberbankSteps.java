@@ -1,6 +1,9 @@
 package sberbank;
 
 
+import helpers.BaseSteps;
+import org.apache.commons.exec.util.MapUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import ru.yandex.qatools.allure.annotations.Step;
 
@@ -50,12 +53,13 @@ public class SberbankSteps {
         for (Map.Entry<String, String> entry : textForForm.entrySet()) {
             String id = entry.getKey();
             String value = entry.getValue();
-            fillField(value, sberbankPage.findElement(id));
+            sberbankPage.waitClickable(id);
+            fillField(sberbankPage.findElement(id),value);
         }
     }
 
-    @Step("Заполнение значением: {0}")
-    public void fillField(String value, WebElement field) {
+    @Step("Заполнение значением: {1}")
+    public void fillField( WebElement field,String value) {
         sberbankPage.fillTextField(field, value);
     }
 

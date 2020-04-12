@@ -66,7 +66,7 @@ public class SberbankPage {
     }
 
     public WebElement findElement(String id) {
-        return BaseSteps.findElement(id);
+        return BaseSteps.findElementById(id);
     }
 
     public void fillTextField(WebElement field, String value) {
@@ -79,6 +79,10 @@ public class SberbankPage {
 
     public void clickOnFinalBtn() {
         BaseSteps.clickFor(finalButton);
+    }
+
+    public void waitClickable(String id) {
+        BaseSteps.waitClickNoClick(BaseSteps.findElementById(id));
     }
 }
 

@@ -2,7 +2,7 @@ package helpers;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.yandex.qatools.allure.annotations.Attachment;
 
+import java.util.List;
 import java.util.Properties;
 
 public class BaseSteps {
@@ -18,8 +19,8 @@ public class BaseSteps {
     public static WebDriver driver;
     public static Wait<WebDriver> wait;
 
-    @Before
-    public void setUp() {
+    @BeforeClass
+    public static void setUp() {
         switch (properties.getProperty("browser")) {
             case "firefox":
                 System.setProperty("webdriver.gecko.driver", properties.getProperty("webdriver.gecko.driver"));
@@ -30,25 +31,34 @@ public class BaseSteps {
                 driver = new ChromeDriver();
                 break;
         }
-        wait = new WebDriverWait(driver, 5, 5000);
+        wait = new WebDriverWait(driver, 10, 5000);
     }
 
     public static WebDriver getDriver() {
         return driver;
     }
 
-    public static void fill(By a, String b) {
-        driver.findElement(a).click();
-        driver.findElement(a).sendKeys(b);
+    public static List<WebElement> findElementsByXpath(String xpath) {
+        return driver.findElements(By.xpath(xpath));
     }
+
+    public static List<WebElement> findElementsByClassName(String className) {
+        return driver.findElements(By.className(className));
+    }
+
 
     public static void fill(WebElement a, String b) {
         a.click();
+        a.clear();
         a.sendKeys(b);
     }
 
-    public static WebElement findElement(String id) {
+    public static WebElement findElementById(String id) {
         return driver.findElement(By.id(id));
+    }
+
+    public static WebElement findElementByXpath(String xpath) {
+        return driver.findElement(By.xpath(xpath));
     }
 
     public static void clickFor(WebElement a) {
@@ -73,7 +83,11 @@ public class BaseSteps {
         wait.until(ExpectedConditions.elementToBeClickable(a));
     }
 
-    @Attachment(type = "image/png", value = "Screenshot")
+    public static void waitClickNoClick(String xpath) {
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
+    }
+
+    @Attachment(type = "image/png", value = "Скриншот об ошибке")
     public static byte[] takeScreenshot() {
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
