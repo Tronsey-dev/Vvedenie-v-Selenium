@@ -9,7 +9,7 @@ import yandex.YandexSteps;
 
 import java.util.ArrayList;
 
-public class FinalTasksTest extends BaseSteps {
+public class FinalYandexTest extends BaseSteps {
     private static final String baseUrl = "https://yandex.ru/";
     private YandexSteps yandexSteps = new YandexSteps();
 

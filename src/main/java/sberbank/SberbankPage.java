@@ -82,7 +82,7 @@ public class SberbankPage {
     }
 
     public void waitClickable(String id) {
-        BaseSteps.waitClickNoClick(BaseSteps.findElementById(id));
+        BaseSteps.elementIsPresents(BaseSteps.findElementById(id));
     }
 }
 

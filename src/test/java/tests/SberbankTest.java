@@ -8,7 +8,7 @@ import sberbank.SberbankSteps;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TaskTest extends BaseSteps {
+public class SberbankTest extends BaseSteps {
     private static final String baseUrl = "https://www.sberbank.ru/ru/person";
 
     @Test

@@ -97,7 +97,7 @@ public class YandexPage {
     public void clickResAndWait(String name) {
         BaseSteps.waitClick(lookRez);
         BaseSteps.waitText(header, name);
-        BaseSteps.waitClickNoClick(BaseSteps.driver.findElement(By.xpath("//div[3]/div[1]/div[2]/div/div[1]/div[1]/div[4]/div[1]/h3/a")));
+        BaseSteps.elementIsPresents(BaseSteps.driver.findElement(By.xpath("//div[3]/div[1]/div[2]/div/div[1]/div[1]/div[4]/div[1]/h3/a")));
     }
 
     public String getTvListAndCheckLength(String xpath) {
@@ -112,7 +112,7 @@ public class YandexPage {
 
     public void clickObSearchBtn(String firstRes,String xpath) {
         BaseSteps.waitClick(searchBut.findElement(By.xpath("./..")));
-        BaseSteps.waitClickNoClick(xpath);
+        BaseSteps.elementIsPresents(xpath);
         WebElement foundElement = BaseSteps.findElementByXpath(xpath);
         Assert.assertEquals(String.format("Получено значение [%1s]. Ожидалось [%2s]", foundElement.getText(), firstRes), firstRes, foundElement.getText());
     }

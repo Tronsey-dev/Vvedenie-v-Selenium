@@ -79,12 +79,12 @@ public class BaseSteps {
         wait.until(ExpectedConditions.elementToBeClickable(a)).click();
     }
 
-    public static void waitClickNoClick(WebElement a) {
+    public static void elementIsPresents(WebElement a) {
         wait.until(ExpectedConditions.elementToBeClickable(a));
     }
 
-    public static void waitClickNoClick(String xpath) {
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
+    public static void elementIsPresents(String xpath) {
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
     }
 
     @Attachment(type = "image/png", value = "Скриншот об ошибке")
